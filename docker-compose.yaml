@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgis/postgis:14-3.4-alpine
+    ports:
+      - ${DATABASE_PORT}:5432
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASS}
+      - TZ= América/Paraguay/Asuncion
+    volumes:
+      - db:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  db:
